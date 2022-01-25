@@ -18,7 +18,7 @@ export class UpdateDisplayDto {
   @IsOptional()
   @IsString()
   @IsNotEmpty()
-  mark: string;
+  mark?: string;
 
   @ApiProperty({
     description: 'display price',
@@ -28,7 +28,7 @@ export class UpdateDisplayDto {
   @IsOptional()
   @IsNumber()
   @IsPositive()
-  price: number;
+  price?: number;
 
   @ApiProperty({
     description: 'display matrix type',
@@ -37,7 +37,7 @@ export class UpdateDisplayDto {
   })
   @IsOptional()
   @IsEnum(MatrixType)
-  matrixType: MatrixType;
+  matrixType?: MatrixType;
 
   @ApiProperty({
       description: 'display model',
@@ -47,5 +47,5 @@ export class UpdateDisplayDto {
   @IsOptional()
   @IsString()
   @IsNotEmpty()
-  model: string;
+  model?: string;
 }

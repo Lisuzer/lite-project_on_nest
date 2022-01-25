@@ -34,12 +34,11 @@ describe('DisplaysController', () => {
       matrixType: MatrixType.TN,
       model: 'LRG234',
     };
+    let display: Display;
 
-    let display: Display
-
-    beforeEach(async () =>{
+    beforeEach(async () => {
       display = await controller.create(dto);
-    })
+    });
 
     it('display service should be called', () => {
       expect(service.create).toHaveBeenCalledWith(dto);
@@ -47,6 +46,77 @@ describe('DisplaysController', () => {
 
     it('should create display', () => {
       expect(display).toEqual(displayStub());
+    });
+  });
+
+  describe('update', () => {
+    const dto = {
+      price: 2700,
+      model: 'LRG234',
+    };
+    let display: Display;
+    const id: string = '61e95c042794154603009f6f';
+
+    beforeEach(async () => {
+      display = await controller.update(id, dto);
+    });
+
+    it('display service should be called', () => {
+      expect(service.update).toHaveBeenCalledWith(id, dto);
+    });
+
+    it('should find and update display by given id', () => {
+      expect(display).toEqual(displayStub());
+    });
+  });
+
+  describe('remove', () => {
+    let display: Display;
+    const id: string = '61e95c042794154603009f6f';
+    beforeEach(async () => {
+      display = await controller.remove(id);
+    });
+
+    it('display service should be called', () => {
+      expect(service.remove).toHaveBeenCalledWith(id);
+    });
+
+    it('should find and remove display by given id', () => {
+      expect(display).toEqual(displayStub());
+    });
+  });
+
+  describe('get', () => {
+    
+    describe('getAll', () => {
+      let display: Display[];
+      beforeEach(async () => {
+        display = await controller.getAll();
+      });
+
+      it('display service should be called', () => {
+        expect(service.getAll).toHaveBeenCalledWith();
+      });
+
+      it('should return displays', () => {
+        expect(display).toEqual(displayStub());
+      });
+    });
+
+    describe('getOne', () => {
+      let display: Display;
+      const id: string = '61e95c042794154603009f6f';
+      beforeEach(async () => {
+        display = await controller.getOne(id);
+      });
+
+      it('display service should be called', () => {
+        expect(service.getOne).toHaveBeenCalledWith(id);
+      });
+
+      it('should find and return display by given id', () => {
+        expect(display).toEqual(displayStub());
+      });
     });
   });
 });
